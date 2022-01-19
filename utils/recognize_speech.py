@@ -12,7 +12,6 @@ def recognize(filename, lang = 'RU'):
     with sample_audio as audio_file:
         audio_content = recog.record(audio_file)
 
-    # uk-UA
     return recog.recognize_google(audio_content, language=LANGUAGES[lang])
 
 

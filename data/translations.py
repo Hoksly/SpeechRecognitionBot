@@ -4,6 +4,7 @@ COMMANDS = {
     'language': ['Change language of bot', 'RUS', 'UKR'],
 
 }
+
 COMMANDS_DESCRIPTION = {
     'help': ['/help - show this message again \n/lang - change voice messages language \n/language - change language of bot',
              'RUS', 'UKR'],

@@ -1,9 +1,9 @@
 from aiogram import types
-from loader import dp, bot
+from loader import bot
 from utils.recognize_speech import recognize_voice
 
 
-@dp.message_handler(content_types=[types.ContentType.VOICE])
+@bot.message_handler(content_types=['voice'])
 async def idk_how_to_name_you(message: types.Message):
     if message.voice:
 
