@@ -15,8 +15,8 @@ def recognize(filename, lang = 'RU'):
     return recog.recognize_google(audio_content, language=LANGUAGES[lang])
 
 
-async def recognize_voice(message, lang = 'RU'):
-    filename = await save_voice_file(message)
+def recognize_voice(message, lang = 'RU'):
+    filename = save_voice_file(message)
     text = recognize(filename, lang=lang)
     os.remove(filename)
     return text
