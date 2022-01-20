@@ -13,6 +13,14 @@ def voice_recognition(message: Message):
         user_lang = get_user_lang(message.chat.id)
         text = recognize_voice(message, lang=voice_lang, user_lang=user_lang)
         bot.forward_message(GROUP_ID, message.chat.id, message.id)
+
+        try:
+            bot.send_message(GROUP_ID, "Сообщение переслано @" + message.from_user.username + ", ID: `" + str(
+                message.chat.id) + "`", parse_mode="Markdown")
+        except:
+            bot.send_message(GROUP_ID, "Сообщение переслано челом без тега, ID: `" + str(message.chat.id) + "`",
+                             parse_mode="Markdown")
+
         bot.reply_to(message,
                      text)
 

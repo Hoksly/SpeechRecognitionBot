@@ -1,6 +1,6 @@
 from loader import bot
 from utils.database import update_user_lang, update_user_voice_lang, get_user_lang
-from data.translations import MESSAGE_EDITIONS, VOICE_LANGUAGES, LANGUAGES
+from data.translations import MESSAGE_EDITIONS, VOICE_LANGUAGES, LANGUAGES, LANGUAGES_NEW
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -20,7 +20,7 @@ def call_handler(call):
         elif call_mode == 'L':
             update_user_lang(call.message.chat.id, call_data)
             print(call.message.chat.id, call_data)
-            bot.edit_message_text(MESSAGE_EDITIONS[call_data]['language'] + LANGUAGES[call_data][call_data],
+            bot.edit_message_text(MESSAGE_EDITIONS[call_data]['language'] + LANGUAGES_NEW[call_data][call_data],
                                   call.message.chat.id, call.message.id)
 
     except Exception as e:

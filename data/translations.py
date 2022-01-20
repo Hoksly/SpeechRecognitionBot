@@ -51,3 +51,6 @@ ERROR_MESSAGE = ['Could not recognize any word in this voice message', 'Ошиб
                  'Ой, щось хуйню прислав']
 
 
+LANGUAGES_NEW = [['English', 'Russian', 'Ukrainian'],
+             ['английский', 'русский', 'украинский'],
+             ['англійську', 'російську', 'українську'],]
