@@ -1,10 +1,10 @@
 import speech_recognition as sr
 from utils.saver import save_voice_file
 import os
-from data.translations import LANGUAGE_KEYS
+from data.translations import LANGUAGE_KEYS, ERROR_MESSAGE
 
 
-def recognize(filename, lang='RU'):
+def recognize(filename, lang, user_lang):
     r = sr.Recognizer()
 
     recog = sr.Recognizer()
@@ -15,11 +15,11 @@ def recognize(filename, lang='RU'):
     try:
         return recog.recognize_google(audio_content, language=LANGUAGE_KEYS[lang])
     except sr.UnknownValueError:
-        return 'FUCK'
+        return ERROR_MESSAGE[user_lang]
 
 
-def recognize_voice(message, lang = 'RU'):
+def recognize_voice(message, lang, user_lang):
     filename = save_voice_file(message)
-    text = recognize(filename, lang=lang)
+    text = recognize(filename, lang=lang, user_lang=user_lang)
     os.remove(filename)
     return text

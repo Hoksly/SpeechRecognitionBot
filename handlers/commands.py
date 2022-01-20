@@ -11,7 +11,7 @@ def start (message: Message):
     recreate_db()
     add_user(message.chat.id)
     user_lang = 0
-    bot.send_message(message.chat.id, COMMANDS_DESCRIPTION['help'][user_lang])
+    bot.send_message(message.chat.id, COMMANDS_DESCRIPTION['start'][user_lang])
 
 
 @bot.message_handler(commands=['help'])
@@ -45,10 +45,14 @@ def language (message: Message):
     bot.send_message(message.chat.id, COMMANDS_DESCRIPTION['language'][user_lang], reply_markup=markup)
 
 
+@bot.message_handler(commands=['cid'])
+def cid (messsage):
+    bot.send_message (messsage.chat.id, messsage.chat.id)
+
+
 @bot.message_handler(content_types=['text'])
 def text(message: Message):
-    pass
-
+   pass
 
 
 
