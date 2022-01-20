@@ -9,5 +9,7 @@ def voice_recognition(message: Message):
     if message.voice:
         voice_lang = get_user_voice_lang(message.chat.id)
         text = recognize_voice(message, lang=voice_lang)
-        bot.send_message(message.chat.id, text)
+
+        bot.reply_to(message,
+                     text)
 

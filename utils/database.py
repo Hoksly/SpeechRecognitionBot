@@ -7,8 +7,8 @@ def recreate_db():
     cur = db.cursor()
     cur.execute("""CREATE TABLE IF NOT EXISTS User(
             ID INT PRIMARY KEY,
-            VOICE_LANG TEXT,
-            LANGUAGE TEXT
+            VOICE_LANG INT,
+            LANGUAGE INT
     )""")
     db.commit()
     db.close()
@@ -41,27 +41,40 @@ def get_user_voice_lang(user_id):
         return 0
 
 
-def add_user(user_id, default = 'ENG'):
+def add_user(user_id, default_lang=0, default_voice=0):
     db = sqlite3.connect(DATABASE_FILE)
     cur = db.cursor()
-    cur.execute("""INSERT INTO User(ID, VOICE_LANG, LANGUAGE) VALUES (?, ?, ?)""", (user_id, default, default))
+    cur.execute('SELECT LANGUAGE FROM User WHERE ID = ?', (user_id,))
+    if not cur.fetchone():
+        cur.execute("""INSERT INTO User(ID, VOICE_LANG, LANGUAGE) VALUES (?, ?, ?)""",
+                    (user_id, default_voice, default_lang))
+        db.commit()
+    db.close()
+
+
+def update_user_lang(user_id, lang:int):
+    db = sqlite3.connect(DATABASE_FILE)
+    cur = db.cursor()
+    cur.execute('SELECT LANGUAGE FROM User WHERE ID = ?', (user_id,))
+    if cur.fetchone():
+        cur.execute("""UPDATE User SET LANGUAGE = ? WHERE ID = ?""", (lang, user_id))
+    else:
+        add_user(user_id)
+        return 0
     db.commit()
     db.close()
 
 
-def update_user_lang(user_id, lang):
+def update_user_voice_lang(user_id, lang:str):
     db = sqlite3.connect(DATABASE_FILE)
     cur = db.cursor()
     # exception if user is not in database
-    cur.execute("""UPDATE TABLE User SET LANGUAGE = ? WHERE ID = ?""", (lang, user_id))
-    db.close()
-
-
-def update_user_voice_lang(user_id, lang):
-    db = sqlite3.connect(DATABASE_FILE)
-    cur = db.cursor()
-    # exception if user is not in database
-    cur.execute("""UPDATE TABLE User SET VOICE_LANG = ? WHERE ID = ?""", (lang, user_id))
+    if cur.fetchone():
+        cur.execute("""UPDATE User SET VOICE_LANG = ? WHERE ID = ?""", (lang, user_id))
+    else:
+        add_user(user_id)
+        return 0
+    db.commit()
     db.close()
 
 
