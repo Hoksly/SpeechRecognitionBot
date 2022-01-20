@@ -10,6 +10,7 @@ def recreate_db():
             VOICE_LANG INT,
             LANGUAGE INT
     )""")
+
     db.commit()
     db.close()
 
@@ -66,15 +67,18 @@ def update_user_lang(user_id, lang:int):
 
 
 def update_user_voice_lang(user_id, lang:str):
+    print("HERE:", user_id, lang)
     db = sqlite3.connect(DATABASE_FILE)
     cur = db.cursor()
     # exception if user is not in database
+    cur.execute('SELECT LANGUAGE FROM User WHERE ID = ?', (user_id,))
     if cur.fetchone():
         cur.execute("""UPDATE User SET VOICE_LANG = ? WHERE ID = ?""", (lang, user_id))
+        db.commit()
     else:
         add_user(user_id)
         return 0
-    db.commit()
+
     db.close()
 
 
