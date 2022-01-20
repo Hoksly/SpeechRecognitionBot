@@ -67,7 +67,6 @@ def update_user_lang(user_id, lang:int):
 
 
 def update_user_voice_lang(user_id, lang:str):
-    print("HERE:", user_id, lang)
     db = sqlite3.connect(DATABASE_FILE)
     cur = db.cursor()
     # exception if user is not in database

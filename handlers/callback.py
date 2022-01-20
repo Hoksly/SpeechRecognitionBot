@@ -11,7 +11,6 @@ def call_handler(call):
         call_mode = call.data[0]
         user_lang = get_user_lang(call.message.chat.id)
         if call_mode == 'V':
-            print(call.message.chat.id, call_data)
             update_user_voice_lang(call.message.chat.id, call_data)
 
             bot.edit_message_text(MESSAGE_EDITIONS[user_lang]['lang'] + VOICE_LANGUAGES[user_lang][call_data][0],

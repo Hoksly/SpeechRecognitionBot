@@ -13,7 +13,7 @@ COMMANDS_DESCRIPTION = {
     'lang': ['Choose language of voice messages:',
              'Выберете язык голосовых сообщений:', 'Оберіть мову голосових повідомлень:'],
     'language': ['Choose one of the languages below:',
-                 'Выберете язык бота:', 'Оберіть мову бота:'],
+                 'Выберите язык бота:', 'Оберіть мову бота:'],
     'start': [
         'Hello, I am bot, who helps you transform voice messages into text.\nJust send me any voice message and I wll repily with a text.'
         'To change language of voice message use /lang (default id english)\n To change language of bot use /language',
