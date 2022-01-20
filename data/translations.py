@@ -47,8 +47,8 @@ LANGUAGES = [['English', 'Russian', 'Ukrainian'],
 
 LANGUAGE_KEYS = ['en-US', 'uk-UA', 'ru', 'de-DE']
 
-ERROR_MESSAGE = ['Could not recognize any word in this voice message', 'Ошибка при обработке голосового сообщения: невозможно распознать ни одного слова',
-                 'Ой, щось хуйню прислав']
+ERROR_MESSAGE = ['Could not recognize any word in this voice message, please check /lang', 'Ошибка при обработке голосового сообщения: невозможно распознать ни одного слова, проверь /lang',
+                 'Неможу нічого розібрати, перевір /lang']
 
 
 LANGUAGES_NEW = [['English', 'Russian', 'Ukrainian'],
