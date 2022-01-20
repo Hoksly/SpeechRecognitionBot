@@ -18,10 +18,10 @@ def get_user_lang(user_id):
     db = sqlite3.connect(DATABASE_FILE)
     cur = db.cursor()
     cur.execute("""SELECT LANGUAGE FROM User WHERE ID = ?""", (user_id,))
-    user_lang = cur.fetchone()[0]
+    user_lang = cur.fetchone()
     db.close()
     if user_lang:
-        return user_lang
+        return user_lang[0]
     else:
         add_user(user_id)
         return 0
@@ -32,10 +32,10 @@ def get_user_voice_lang(user_id):
     cur = db.cursor()
 
     cur.execute("""SELECT VOICE_LANG FROM User WHERE ID = ?""", (user_id,))
-    voice_lang = cur.fetchone()[0]
+    voice_lang = cur.fetchone()
     db.close()
     if voice_lang:
-        return voice_lang
+        return voice_lang[0]
     else:
         add_user(user_id)
         return 0
@@ -79,4 +79,4 @@ def update_user_voice_lang(user_id, lang:str):
 
 
 if __name__ == '__main__':
-    recreate_db()
+    pass
