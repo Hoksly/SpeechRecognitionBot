@@ -7,9 +7,9 @@ COMMANDS = {
 
 COMMANDS_DESCRIPTION = {
     'help': [
-        '/help - show this message again \n/lang - change voice messages language \n/language - change language of bot',
-        '/help - show this message again \n/lang - change voice messages language \n/language - change language of bot',
-        '/help - show this message again \n/lang - change voice messages language \n/language - change language of bot'],
+        '/help - show this message again \n/voicelang - change voice messages language \n/botlang - change language of bot',
+        '/help - show this message again \n/voicelang - change voice messages language \n/botlang - change language of bot',
+        '/help - show this message again \n/voicelang - change voice messages language \n/botlang - change language of bot'],
     'lang': ['Choose language of voice messages:',
              'Выберете язык голосовых сообщений:', 'Оберіть мову голосових повідомлень:'],
     'language': ['Choose one of the languages below:',
