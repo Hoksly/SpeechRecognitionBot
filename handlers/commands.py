@@ -8,7 +8,6 @@ from data.translations import VOICE_LANGUAGES, COMMANDS_DESCRIPTION, LANGUAGES
 
 @bot.message_handler(commands=['start'])
 def start (message: Message):
-    recreate_db()
     add_user(message.chat.id)
     user_lang = 0
     bot.send_message(message.chat.id, COMMANDS_DESCRIPTION['start'][user_lang])
@@ -20,7 +19,7 @@ def helpp (message: Message):
     bot.send_message(message.chat.id, COMMANDS_DESCRIPTION['help'][user_lang])
 
 
-@bot.message_handler(commands=['lang'])
+@bot.message_handler(commands=['voicelang'])
 def lang(message: Message):
     try:
         user_lang = get_user_lang(message.chat.id)
@@ -35,7 +34,7 @@ def lang(message: Message):
         print ('\x1b[0;30;41m' + "Error in lang(): {} !".format(e) + '\x1b[0m')
 
 
-@bot.message_handler(commands=['language'])
+@bot.message_handler(commands=['botlang'])
 def language (message: Message):
     user_lang = get_user_lang(message.chat.id)
 
@@ -45,14 +44,9 @@ def language (message: Message):
     bot.send_message(message.chat.id, COMMANDS_DESCRIPTION['language'][user_lang], reply_markup=markup)
 
 
-@bot.message_handler(commands=['cid'])
-def cid (messsage):
-    bot.send_message (messsage.chat.id, messsage.chat.id)
-
-
 @bot.message_handler(content_types=['text'])
 def text(message: Message):
-   pass
+   helpp(message)
 
 
 
