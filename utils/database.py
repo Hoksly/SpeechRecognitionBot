@@ -42,7 +42,7 @@ def get_user_voice_lang(user_id):
         return 0
 
 
-def add_user(user_id, default_lang=0, default_voice=0):
+def add_user(user_id, default_lang=0, default_voice=2):
     db = sqlite3.connect(DATABASE_FILE)
     cur = db.cursor()
     cur.execute('SELECT LANGUAGE FROM User WHERE ID = ?', (user_id,))
